@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="tr" data-lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kedistanbul: İstanbul'un sokak kedileriyle strateji</title>
+<meta name="description" content="Kedistanbul, İstanbul'un sokak kedileriyle birebir oynanan bir mobil strateji oyunu. Yakında iOS ve Android'de.">
+<link rel="canonical" href="https://playkedistanbul.com/">
+<link rel="icon" type="image/png" sizes="32x32" href="img/ikon-32.png">
+<link rel="apple-touch-icon" href="img/ikon-180.png">
+<meta name="theme-color" content="#F6ECD9">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kedistanbul">
+<meta property="og:title" content="Kedistanbul">
+<meta property="og:description" content="İstanbul'un sokak kedileriyle birebir strateji. Yakında iOS ve Android'de.">
+<meta property="og:url" content="https://playkedistanbul.com/">
+<meta property="og:image" content="https://playkedistanbul.com/img/paylasim.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@playkedistanbul">
+<script>
+  // Turkish for Turkish browsers, English for everyone else; a choice made on the page wins.
+  (function () {
+    var lang = null;
+    try { lang = localStorage.getItem('lang'); } catch (e) {}
+    if (lang !== 'tr' && lang !== 'en') {
+      var list = navigator.languages || [navigator.language || 'tr'];
+      lang = /^tr/i.test(list[0] || '') ? 'tr' : 'en';
+    }
+    document.documentElement.lang = lang;
+    document.documentElement.setAttribute('data-lang', lang);
+  })();
+</script>
+<style>
+  :root {
+    --cream: #F6ECD9;
+    --paper: #FFF8EC;
+    --ink: #3B2416;
+    --muted: #6E5240;
+    --line: #5C341E;
+    --orange: #F39237;
+    --orange-deep: #A9481A;
+    --gold: #F1C24B;
+    --sea: #2F7FB8;
+    --paw: rgba(176, 112, 64, 0.09);
+    --round: ui-rounded, "SF Pro Rounded", "Arial Rounded MT Bold", "Nunito", "Varela Round", system-ui, sans-serif;
+    color-scheme: light;
+  }
+  html[data-lang="tr"] [data-l="en"], html[data-lang="en"] [data-l="tr"] { display: none !important; }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background-color: var(--cream);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='120' viewBox='0 0 140 120'%3E%3Cg fill='%23b07040' fill-opacity='0.09'%3E%3Cellipse cx='30' cy='34' rx='9' ry='8'/%3E%3Ccircle cx='19' cy='22' r='4'/%3E%3Ccircle cx='26' cy='16' r='4'/%3E%3Ccircle cx='35' cy='16' r='4'/%3E%3Ccircle cx='42' cy='22' r='4'/%3E%3Cellipse cx='100' cy='94' rx='9' ry='8'/%3E%3Ccircle cx='89' cy='82' r='4'/%3E%3Ccircle cx='96' cy='76' r='4'/%3E%3Ccircle cx='105' cy='76' r='4'/%3E%3Ccircle cx='112' cy='82' r='4'/%3E%3C/g%3E%3C/svg%3E");
+    color: var(--ink);
+    font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: var(--orange-deep); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding-inline: 20px; }
+  h1, h2, h3 { font-family: var(--round); line-height: 1.2; text-wrap: balance; margin: 0; }
+  h2 { font-size: clamp(26px, 4vw, 36px); font-weight: 800; }
+  h3 { font-size: 21px; font-weight: 800; }
+  p { margin: 0; }
+
+  .top { display: flex; justify-content: flex-end; padding-block: 14px 0; }
+  .langs { display: flex; gap: 4px; background: var(--paper); border: 2px solid var(--line); border-radius: 999px; padding: 3px; }
+  .langs button {
+    font: 700 14px/1 var(--round); letter-spacing: 0.06em; color: var(--muted);
+    background: none; border: 0; border-radius: 999px; padding: 7px 12px; cursor: pointer;
+  }
+  .langs button[aria-pressed="true"] { background: var(--orange); color: var(--ink); }
+
+  .hero { display: grid; justify-items: center; text-align: center; gap: 18px; padding-block: 18px 40px; }
+  .hero h1 { width: min(680px, 100%); }
+  .tagline { font: 800 clamp(22px, 3.4vw, 32px)/1.25 var(--round); max-width: 22em; text-wrap: balance; }
+  .lead { color: var(--muted); max-width: 34em; font-size: 18px; }
+  .soon {
+    display: inline-flex; align-items: center; gap: 10px;
+    font: 800 16px/1 var(--round); color: var(--ink);
+    background: var(--gold); border: 3px solid var(--line); border-radius: 999px; padding: 11px 20px;
+    box-shadow: 0 4px 0 var(--line);
+  }
+  .soon svg { width: 18px; height: 18px; }
+
+  .shot { margin: 0 auto; max-width: 980px; }
+  .shot img { border: 4px solid var(--line); border-radius: 20px; box-shadow: 0 7px 0 var(--line); background: var(--paper); }
+  .shot figcaption { color: var(--muted); font-size: 15px; text-align: center; margin-top: 16px; }
+
+  section { padding-block: 56px 0; }
+  .head { display: grid; gap: 8px; margin-bottom: 26px; }
+  .head p { color: var(--muted); }
+
+  .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; counter-reset: step; padding: 0; margin: 0; list-style: none; }
+  .steps li { display: grid; gap: 6px; align-content: start; padding-top: 50px; position: relative; }
+  .steps li::before {
+    counter-increment: step; content: counter(step);
+    position: absolute; top: 0; left: 0; width: 38px; height: 38px; border-radius: 50%;
+    display: grid; place-items: center; font: 800 19px/1 var(--round);
+    background: var(--orange); border: 3px solid var(--line); color: var(--ink);
+  }
+  .steps p { color: var(--muted); }
+
+  .heroes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .card { background: var(--paper); border: 3px solid var(--line); border-radius: 18px; box-shadow: 0 5px 0 var(--line); }
+  .cat { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 4px 16px; padding: 18px; align-items: center; }
+  .cat > img { width: 88px; height: 88px; grid-row: span 2; }
+  .cat h3 { align-self: end; }
+  .cat .title { align-self: start; color: var(--muted); font-size: 15px; line-height: 1.35; }
+  .cat .style { grid-column: 1 / -1; font: 800 13px/1 var(--round); letter-spacing: 0.08em; text-transform: uppercase; color: var(--orange-deep); margin-top: 10px; }
+  .cat ul { grid-column: 1 / -1; list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 6px; }
+  .cat li { display: flex; align-items: center; gap: 10px; font-size: 15px; line-height: 1.3; }
+  .cat li img { width: 34px; height: 34px; flex: none; }
+
+  .places { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .place { overflow: hidden; }
+  .place img { width: 100%; aspect-ratio: 16 / 5; object-fit: cover; border-bottom: 3px solid var(--line); }
+  .place h3 { padding: 12px 16px 14px; font-size: 19px; }
+
+  .follow { text-align: center; display: grid; justify-items: center; gap: 12px; padding-bottom: 8px; }
+  .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 8px; }
+  .links a {
+    font: 800 15px/1 var(--round); color: var(--ink); text-decoration: none;
+    background: var(--paper); border: 3px solid var(--line); border-radius: 999px; padding: 11px 18px;
+    box-shadow: 0 4px 0 var(--line); transition: transform 0.12s, box-shadow 0.12s;
+  }
+  .links a:hover, .links a:focus-visible { transform: translateY(2px); box-shadow: 0 2px 0 var(--line); }
+  .mail { color: var(--muted); margin-top: 14px; }
+  .mail a { font-weight: 700; }
+
+  footer { padding-block: 56px 36px; text-align: center; color: var(--muted); font-size: 14px; }
+
+  @media (max-width: 860px) {
+    .heroes, .places { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 620px) {
+    body { font-size: 16px; }
+    .steps, .heroes, .places { grid-template-columns: minmax(0, 1fr); }
+    .steps li { padding-top: 0; padding-left: 54px; }
+    .shot img { border-width: 3px; border-radius: 14px; box-shadow: 0 5px 0 var(--line); }
+  }
+  @media (prefers-reduced-motion: reduce) { .links a { transition: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="langs" role="group" aria-label="Dil / Language">
+      <button type="button" data-set="tr">TR</button>
+      <button type="button" data-set="en">EN</button>
+    </div>
+  </div>
+
+  <header class="hero">
+    <h1><img src="img/logo.webp" width="1200" height="281" alt="Kedistanbul"></h1>
+    <p class="tagline"><span data-l="tr">İstanbul'un sokak kedileriyle birebir strateji.</span><span data-l="en">One-on-one strategy with the street cats of Istanbul.</span></p>
+    <p class="lead"><span data-l="tr">Mahalleni kur, kedilerini gönder, rakibin bütün binalarını al. Her maç yaklaşık üç dakika.</span><span data-l="en">Build your neighborhood, send your cats, take every building your rival owns. Each match takes about three minutes.</span></p>
+    <p class="soon"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="currentColor"><ellipse cx="12" cy="16" rx="5.2" ry="4.4"/><circle cx="5.6" cy="10" r="2.3"/><circle cx="9.4" cy="6.4" r="2.3"/><circle cx="14.6" cy="6.4" r="2.3"/><circle cx="18.4" cy="10" r="2.3"/></g></svg><span data-l="tr">Yakında iOS ve Android'de</span><span data-l="en">Coming soon to iOS and Android</span></p>
+  </header>
+
+  <figure class="shot">
+    <img src="img/oyun.webp" width="1387" height="868" alt="Ortaköy haritasında bir maç: turuncu ve mavi kedi evleri, kuleler, balıkçılar ve yolda koşan kedi grupları" data-alt-en="A match on the Ortaköy map: orange and blue cat houses, towers, fish stalls and groups of cats on the move">
+    <figcaption><span data-l="tr">Ortaköy'de bir maç: turuncular sen, maviler rakibin. Çizimler henüz geliştirme aşamasında.</span><span data-l="en">A match in Ortaköy: orange is you, blue is your rival. The art is still a work in progress.</span></figcaption>
+  </figure>
+
+  <section aria-labelledby="how">
+    <div class="head"><h2 id="how"><span data-l="tr">Nasıl oynanır?</span><span data-l="en">How to play</span></h2></div>
+    <ol class="steps">
+      <li>
+        <h3><span data-l="tr">Kedi gönder</span><span data-l="en">Send your cats</span></h3>
+        <p><span data-l="tr">Evinden sürükle, hedefe bırak. Evdekilerden çok kedi varırsa ev senin olur.</span><span data-l="en">Drag from your house and drop on a target. Arrive with more cats than are inside and the house is yours.</span></p>
+      </li>
+      <li>
+        <h3><span data-l="tr">Büyü ve güçlen</span><span data-l="en">Grow stronger</span></h3>
+        <p><span data-l="tr">Evlerini büyüt, daha çok kedi üretsin. Balıkçıyı tutan tarafın kedileri daha sert saldırır.</span><span data-l="en">Upgrade your houses to raise more cats. Whoever holds the fish stall hits harder.</span></p>
+      </li>
+      <li>
+        <h3><span data-l="tr">Yeteneğini kullan</span><span data-l="en">Use your abilities</span></h3>
+        <p><span data-l="tr">Her kahramanın üç yeteneği var. Doğru anda kullanılan bir yetenek maçı çevirir.</span><span data-l="en">Every hero has three abilities. One used at the right moment turns the match.</span></p>
+      </li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="cats">
+    <div class="head"><h2 id="cats"><span data-l="tr">Altı kahraman, on sekiz yetenek</span><span data-l="en">Six heroes, eighteen abilities</span></h2></div>
+    <div class="heroes">
+      <article class="card cat">
+        <img src="img/kahraman-sarman.webp" width="255" height="256" alt="">
+        <h3>Sarman</h3>
+        <p class="title"><span data-l="tr">Sokakların en hızlısı</span><span data-l="en">The fastest in the streets</span></p>
+        <p class="style"><span data-l="tr">Tempo ve baskın</span><span data-l="en">Tempo and raids</span></p>
+        <ul>
+          <li><img src="img/yetenek-hizliPati.webp" width="128" height="128" alt=""><span data-l="tr">Hızlı Pati</span><span data-l="en">Swift Paws</span></li>
+          <li><img src="img/yetenek-tislama.webp" width="128" height="128" alt=""><span data-l="tr">Tıslama</span><span data-l="en">Hiss</span></li>
+          <li><img src="img/yetenek-sokakCetesi.webp" width="128" height="128" alt=""><span data-l="tr">Sokak Çetesi</span><span data-l="en">Street Gang</span></li>
+        </ul>
+      </article>
+      <article class="card cat">
+        <img src="img/kahraman-pamuk.webp" width="254" height="256" alt="">
+        <h3>Pamuk</h3>
+        <p class="title"><span data-l="tr">Buz bakışlı Van kedisi</span><span data-l="en">The ice-eyed Van cat</span></p>
+        <p class="style"><span data-l="tr">Kontrol ve savunma</span><span data-l="en">Control and defense</span></p>
+        <ul>
+          <li><img src="img/yetenek-kalkan.webp" width="128" height="128" alt=""><span data-l="tr">Kedi Kalkanı</span><span data-l="en">Cat Shield</span></li>
+          <li><img src="img/yetenek-yumak.webp" width="128" height="128" alt=""><span data-l="tr">Yumak</span><span data-l="en">Yarn Ball</span></li>
+          <li><img src="img/yetenek-buzBakisi.webp" width="128" height="128" alt=""><span data-l="tr">Buz Bakışı</span><span data-l="en">Frost Stare</span></li>
+        </ul>
+      </article>
+      <article class="card cat">
+        <img src="img/kahraman-duman.webp" width="255" height="256" alt="">
+        <h3>Duman</h3>
+        <p class="title"><span data-l="tr">Gölgelerin kurnazı</span><span data-l="en">The sly one of the shadows</span></p>
+        <p class="style"><span data-l="tr">Hile ve taklit</span><span data-l="en">Tricks and mimicry</span></p>
+        <ul>
+          <li><img src="img/yetenek-golge.webp" width="128" height="128" alt=""><span data-l="tr">Gölge</span><span data-l="en">Shadow</span></li>
+          <li><img src="img/yetenek-taklit.webp" width="128" height="128" alt=""><span data-l="tr">Taklit</span><span data-l="en">Mimic</span></li>
+          <li><img src="img/yetenek-ayartma.webp" width="128" height="128" alt=""><span data-l="tr">Ayartma</span><span data-l="en">Lure</span></li>
+        </ul>
+      </article>
+      <article class="card cat">
+        <img src="img/kahraman-tekir.webp" width="254" height="256" alt="">
+        <h3>Tekir</h3>
+        <p class="title"><span data-l="tr">Mahallenin kedisi</span><span data-l="en">The neighborhood cat</span></p>
+        <p class="style"><span data-l="tr">Ekonomi ve geri dönüş</span><span data-l="en">Economy and comebacks</span></p>
+        <ul>
+          <li><img src="img/yetenek-mamaKabi.webp" width="128" height="128" alt=""><span data-l="tr">Mama Kabı</span><span data-l="en">Food Bowl</span></li>
+          <li><img src="img/yetenek-eveDonus.webp" width="128" height="128" alt=""><span data-l="tr">Eve Dönüş</span><span data-l="en">Homecoming</span></li>
+          <li><img src="img/yetenek-mahalleToplantisi.webp" width="128" height="128" alt=""><span data-l="tr">Mahalle Toplantısı</span><span data-l="en">Neighborhood Meeting</span></li>
+        </ul>
+      </article>
+      <article class="card cat">
+        <img src="img/kahraman-karabas.webp" width="255" height="256" alt="">
+        <h3>Karabaş</h3>
+        <p class="title"><span data-l="tr">Uğursuz kara kedi</span><span data-l="en">The unlucky black cat</span></p>
+        <p class="style"><span data-l="tr">Tuzak ve akıl oyunu</span><span data-l="en">Traps and mind games</span></p>
+        <ul>
+          <li><img src="img/yetenek-kediNanesi.webp" width="128" height="128" alt=""><span data-l="tr">Kedi Nanesi</span><span data-l="en">Catnip</span></li>
+          <li><img src="img/yetenek-karaKedi.webp" width="128" height="128" alt=""><span data-l="tr">Kara Kedi</span><span data-l="en">Black Cat</span></li>
+          <li><img src="img/yetenek-ugursuzluk.webp" width="128" height="128" alt=""><span data-l="tr">Uğursuzluk</span><span data-l="en">Bad Luck</span></li>
+        </ul>
+      </article>
+      <article class="card cat">
+        <img src="img/kahraman-kaptan.webp" width="255" height="256" alt="">
+        <h3>Kaptan</h3>
+        <p class="title"><span data-l="tr">Vapur kedisi</span><span data-l="en">The ferry cat</span></p>
+        <p class="style"><span data-l="tr">Martılar ve bilgi</span><span data-l="en">Gulls and intel</span></p>
+        <ul>
+          <li><img src="img/yetenek-martiGozu.webp" width="128" height="128" alt=""><span data-l="tr">Martı Gözü</span><span data-l="en">Gull Eye</span></li>
+          <li><img src="img/yetenek-martiTasimasi.webp" width="128" height="128" alt=""><span data-l="tr">Martı Taşıması</span><span data-l="en">Gull Airlift</span></li>
+          <li><img src="img/yetenek-martiAkini.webp" width="128" height="128" alt=""><span data-l="tr">Martı Akını</span><span data-l="en">Gull Raid</span></li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="maps">
+    <div class="head">
+      <h2 id="maps"><span data-l="tr">Altı İstanbul semti</span><span data-l="en">Six Istanbul neighborhoods</span></h2>
+      <p><span data-l="tr">Her harita bir semtin meydanı.</span><span data-l="en">Every map is a neighborhood square.</span></p>
+    </div>
+    <div class="places">
+      <figure class="card place" style="margin:0"><img src="img/semt-galata.webp" width="640" height="200" alt="" loading="lazy"><h3>Galata</h3></figure>
+      <figure class="card place" style="margin:0"><img src="img/semt-ortakoy.webp" width="640" height="200" alt="" loading="lazy"><h3>Ortaköy</h3></figure>
+      <figure class="card place" style="margin:0"><img src="img/semt-balat.webp" width="640" height="200" alt="" loading="lazy"><h3>Balat</h3></figure>
+      <figure class="card place" style="margin:0"><img src="img/semt-kadikoy.webp" width="640" height="200" alt="" loading="lazy"><h3>Kadıköy</h3></figure>
+      <figure class="card place" style="margin:0"><img src="img/semt-uskudar.webp" width="640" height="200" alt="" loading="lazy"><h3>Üsküdar</h3></figure>
+      <figure class="card place" style="margin:0"><img src="img/semt-kuzguncuk.webp" width="640" height="200" alt="" loading="lazy"><h3>Kuzguncuk</h3></figure>
+    </div>
+  </section>
+
+  <section class="follow" aria-labelledby="news">
+    <h2 id="news"><span data-l="tr">Haberdar ol</span><span data-l="en">Stay in the loop</span></h2>
+    <p class="lead"><span data-l="tr">Oyun çıkınca ilk duyanlardan ol.</span><span data-l="en">Be among the first to hear when the game is out.</span></p>
+    <nav class="links" aria-label="Sosyal medya / Social media">
+      <a href="https://www.instagram.com/playkedistanbul/" rel="me">Instagram</a>
+      <a href="https://www.tiktok.com/@playkedistanbul" rel="me">TikTok</a>
+      <a href="https://www.youtube.com/@playkedistanbul" rel="me">YouTube</a>
+      <a href="https://x.com/playkedistanbul" rel="me">X</a>
+      <a href="https://bsky.app/profile/playkedistanbul.com" rel="me">Bluesky</a>
+      <a href="https://www.threads.com/@playkedistanbul" rel="me">Threads</a>
+      <a href="https://www.twitch.tv/playkedistanbul" rel="me">Twitch</a>
+    </nav>
+    <p class="mail"><span data-l="tr">İletişim:</span><span data-l="en">Contact:</span> <span id="mail">playkedistanbul [at] gmail.com</span></p>
+  </section>
+</div>
+
+<footer>© 2026 Kedistanbul</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var buttons = document.querySelectorAll('.langs button');
+    var texts = {
+      tr: { title: "Kedistanbul: İstanbul'un sokak kedileriyle strateji" },
+      en: { title: 'Kedistanbul: strategy with the street cats of Istanbul' }
+    };
+    function apply(lang) {
+      root.lang = lang;
+      root.setAttribute('data-lang', lang);
+      document.title = texts[lang].title;
+      buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-set') === lang)); });
+      document.querySelectorAll('img[data-alt-en]').forEach(function (img) {
+        if (!img.hasAttribute('data-alt-tr')) img.setAttribute('data-alt-tr', img.alt);
+        img.alt = img.getAttribute(lang === 'en' ? 'data-alt-en' : 'data-alt-tr');
+      });
+    }
+    buttons.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var lang = b.getAttribute('data-set');
+        try { localStorage.setItem('lang', lang); } catch (e) {}
+        apply(lang);
+      });
+    });
+    apply(root.getAttribute('data-lang') === 'en' ? 'en' : 'tr');
+
+    // The address is put together here, so simple scrapers do not find it in the page source.
+    var user = 'playkedistanbul', host = 'gmail.com';
+    var a = document.createElement('a');
+    a.href = 'mailto:' + user + '@' + host;
+    a.textContent = user + '@' + host;
+    var slot = document.getElementById('mail');
+    slot.textContent = '';
+    slot.appendChild(a);
+  })();
+</script>
+</body>
+</html>
